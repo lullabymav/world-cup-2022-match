@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'base_network.dart';
 
 class ApiDataSource {
@@ -9,18 +8,8 @@ class ApiDataSource {
     // "https://copa22.medeiro.tech/matches"
   }
 
-  Future<Map<String, dynamic>> loadDetailChara(String name) {
-    return BaseNetwork.get("characters/$name");
-    // "https://api.genshin.dev/characters/albedo"
-  }
-
-  Future<List<dynamic>> loadWeapon() {
-    return BaseNetwork.getList("weapons");
-    // "https://api.genshin.dev/weapons"
-  }
-
-  Future<Map<String, dynamic>> loadDetailWeapon(String name) {
-    return BaseNetwork.get("weapons/$name"); // get api pizza
-    // "https://api.genshin.dev/weapons/alley-hunter"
+  Future<Map<String, dynamic>> loadDetailMatches(String id) {
+    return BaseNetwork.get("matches/$id");
+    // "https://copa22.medeiro.tech/matches/clakj8jii002mra2tv46v7vcd"
   }
 }

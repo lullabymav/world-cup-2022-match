@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsi/base/api_data_source.dart';
 import 'package:responsi/model/matches_model.dart';
+import 'package:responsi/ui/page_detail_matches.dart';
 
 class PageListMatches extends StatefulWidget {
   const PageListMatches({Key? key}) : super(key: key);
@@ -33,7 +34,8 @@ class _PageListMatchesState extends State<PageListMatches> {
                         MatchesModel matchesModel = MatchesModel.fromJson(snapshot.data[index]);
                         return InkWell(
                           onTap: (){
-
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => PageDetailMatches(id: matchesModel.id!))
+                            );
                           },
                           child: Card(
                             child: Padding(
