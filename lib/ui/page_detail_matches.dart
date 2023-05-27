@@ -199,7 +199,7 @@ Widget _buildSuccessSection(DetailMatchesModel data){
   );
 }
 
-double passAccu(int a, int b){
+int passAccu(int a, int b){
   var pass = (a / b) * 100;
-  return pass;
+  return pass.round();
 }
