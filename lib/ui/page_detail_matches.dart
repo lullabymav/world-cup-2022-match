@@ -209,7 +209,7 @@ Widget _buildSuccessSection(DetailMatchesModel data, BuildContext context){
                     decoration: BoxDecoration(
                       border: Border.all()
                     ),
-                    width: 120,
+                    width: 130,
                     child: Column(
                       //crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
