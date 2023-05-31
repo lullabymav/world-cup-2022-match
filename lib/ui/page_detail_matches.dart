@@ -40,7 +40,7 @@ Widget _buildDetailedMatchesBody(String id){
         }
         if(snapshot.hasData){
           DetailMatchesModel detailMatchesModel = DetailMatchesModel.fromJson(snapshot.data);
-          return _buildSuccessSection(detailMatchesModel);
+          return _buildSuccessSection(detailMatchesModel, context);
         }
         return _buildLoadingSection();
       },
@@ -65,7 +65,7 @@ Widget _buildLoadingSection(){
   );
 }
 
-Widget _buildSuccessSection(DetailMatchesModel data){
+Widget _buildSuccessSection(DetailMatchesModel data, BuildContext context){
   return Container(
     padding: EdgeInsets.all(8.0),
     child: Column(
@@ -111,11 +111,12 @@ Widget _buildSuccessSection(DetailMatchesModel data){
           padding: const EdgeInsets.all(4.0),
           child: Text("Location : " + data.location!),
         ),
+        SizedBox(height: 10.0),
         Container(
-          // decoration: BoxDecoration(
-          //   border: Border.all()
-          // ),
-          padding: EdgeInsets.all(24.0),
+          decoration: BoxDecoration(
+            border: Border.all()
+          ),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             children: [
               Text("Statistics",
@@ -189,10 +190,40 @@ Widget _buildSuccessSection(DetailMatchesModel data){
             ],
           ),
         ),
+        SizedBox(height: 10.0),
         Text("Referees : ",
             style: TextStyle(
               fontSize: 26.0
             )
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
+          height: MediaQuery.of(context).size.height/5,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: data.officials!.length,
+              itemBuilder: (context, index){
+                return Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all()
+                    ),
+                    width: 120,
+                    child: Column(
+                      //crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.network("https://upload.wikimedia.org/wikipedia/commons/5/5c/FIFA_series_logo.png"),
+                        SizedBox(height: 4.0),
+                        Text(data.officials![index].name.toString()),
+                        SizedBox(height: 4.0),
+                        Text(data.officials![index].role.toString())
+                      ],
+                    ),
+                  ),
+                );
+              }
+          ),
         )
       ],
     ),
